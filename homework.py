@@ -5,17 +5,15 @@ def test_dark_theme_by_time():
     """
     Протестируйте правильность переключения темной темы на сайте в зависимости от времени
     """
-    current_time = time(hour=23)
+    current_time = time(hour=15)
     # TODO переключите темную тему в зависимости от времени суток (с 22 до 6 часов утра - ночь)
     if 6 < current_time.hour <= 22:
-        is_dark_theme = True
-        print('Светлая тема')
-        assert is_dark_theme is True
-    else:
         is_dark_theme = False
+        print('Светлая тема')
+    else:
+        is_dark_theme = True
         print('Тёмная тема')
-        assert is_dark_theme is False
-
+    assert is_dark_theme is True
 
 def test_dark_theme_by_time_and_user_choice():
     """
@@ -57,13 +55,14 @@ def test_find_suitable_user():
     for user in users:
         if user['name'] == 'Olga':
             suitable_users = user
-            assert suitable_users == {"name": "Olga", "age": 45}
+
+    assert suitable_users == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
     suitable_users = []
     for user in users:
         if user['age'] < 20:
-            suitable_users = user
+            suitable_users.append(user)
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
@@ -80,7 +79,7 @@ def test_find_suitable_user():
 # >>> open_browser(browser_name="Chrome")
 # "Open Browser [Chrome]"
 
-def test_function_print(func, *args):
+def function_print(func, *args):
     func_name = func.__name__.replace("_", " ").title()
     res = f"{func_name} [{', '.join(args)}]"
     print(res)
